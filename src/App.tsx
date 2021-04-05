@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useImage } from "./hooks/useImage";
 
-function App() {
+const App: React.FC = () => {
+  const image = useImage();
+
+  function onTouchStart(e: any) {
+    console.log(e);
+  }
+
+  function onTouchMove(e: any) {
+    console.log(e);
+  }
+
+  function onTouchEnd(e: any) {
+    console.log(e);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <div
+        className="image-wrapper"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <img
+          src={image.url}
+          alt={image.alt}
+          className="image"
+          style={{ transform: "scale(1.2)", transformOrigin: "left top" }}
+        />
+      </div>
+    </main>
   );
-}
+};
 
 export default App;
